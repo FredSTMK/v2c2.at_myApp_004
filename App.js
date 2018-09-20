@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import FetchLocation from './components/FetchLocation';
+import UsersMap from './components/UsersMap';
 
 type Props = {};
 
@@ -24,6 +25,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <FetchLocation onGetLocation={this.getUserLocationHandler} />
+        <UsersMap />
       </View>
     );
   }
