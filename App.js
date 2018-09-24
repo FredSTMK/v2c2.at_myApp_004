@@ -15,8 +15,20 @@ import UsersMap from './components/UsersMap';
 type Props = {};
 
 export default class App extends Component<Props> {
+  state = {
+    userLocation: null
+  }
+  
   getUserLocationHandler = () => {
     navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        userLocation: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.0622,
+          longitudeDelta: 0.0421,
+        }
+      })
       console.log(position);
     }, err => console.log(err));
   }
@@ -25,7 +37,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <FetchLocation onGetLocation={this.getUserLocationHandler} />
-        <UsersMap />
+        <UsersMap userLocation={this.state.userLocation}/>
       </View>
     );
   }
